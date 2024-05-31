@@ -1,18 +1,18 @@
 pipeline {
     agent any 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('iccp-dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('nasirraeeny-dockerhub')
     }
     stages { 
         stage('SCM Checkout') {
             steps{
-            git 'https://github.com/iccpnorthindia/jenkinproject2024.git'
+            git 'https://github.com/nasirraeeny/jenkingproject2024.git'
             }
         }
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t iccpinfotech/iccpnew:$BUILD_NUMBER .'
+                sh 'docker build -t nasirraeeny/jenkins2024:$BUILD_NUMBER .'
             }
         }
         stage('login to dockerhub') {
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push iccpinfotech/iccpnew:$BUILD_NUMBER'
+                sh 'docker push nasirraeeny/jenkins2024:$BUILD_NUMBER'
             }
         }
 }
